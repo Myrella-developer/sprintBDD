@@ -66,5 +66,13 @@ SELECT producto.nombre AS nombre_p, producto.precio AS precio_p, fabricante.nomb
 SELECT producto.nombre AS nombre_p, producto.precio AS precio_p, fabricante.nombre AS nombre_fab FROM tienda.producto INNER JOIN fabricante ON producto.codigo_fabricante = fabricante.codigo WHERE fabricante.nombre LIKE '%e';
 SELECT producto.nombre AS nombre_p, producto.precio AS precio_p, fabricante.nombre AS nombre_fab FROM tienda.producto INNER JOIN fabricante ON producto.codigo_fabricante = fabricante.codigo WHERE fabricante.nombre LIKE '%w%';
 SELECT producto.nombre AS nombre_p, producto.precio AS precio_p, fabricante.nombre AS nombre_fab FROM tienda.producto INNER JOIN fabricante ON producto.codigo_fabricante = fabricante.codigo WHERE producto.precio >= 180 ORDER BY producto.precio DESC, producto.nombre ASC;   
-SELECT fabricante.codigo AS codigo_fab, fabricante.nombre AS nombre_fab FROM tienda.fabricante INNER JOIN producto ON fabricante.codigo = producto.codigo_fabricante;
-        
+SELECT fabricante.codigo AS codigo_fab, fabricante.nombre AS nombre_fab FROM tienda.fabricante INNER JOIN tienda.producto ON fabricante.codigo = producto.codigo_fabricante;
+SELECT fabricante.nombre AS nombre_fab, producto.nombre AS nombre_p FROM tienda.fabricante LEFT JOIN tienda.producto  ON fabricante.codigo = producto.codigo_fabricante;   
+SELECT fabricante.nombre AS nombre_fab, producto.nombre AS nombre_p FROM tienda.fabricante LEFT JOIN tienda.producto  ON fabricante.codigo = producto.codigo_fabricante WHERE producto.codigo IS NULL;
+SELECT producto.nombre AS nombre_p, fabricante.nombre AS nombre_fab FROM tienda.producto, tienda.fabricante WHERE producto.codigo_fabricante = fabricante.codigo AND fabricante.nombre = 'Lenovo';
+SELECT * FROM tienda.producto WHERE precio = (SELECT MAX(precio) FROM tienda.producto WHERE codigo_fabricante = (SELECT codigo FROM tienda.fabricante WHERE nombre ='Lenovo'));
+SELECT nombre FROM tienda.producto WHERE codigo_fabricante = (SELECT codigo FROM tienda.fabricante WHERE nombre = 'Lenovo') AND precio = (SELECT MAX(precio) FROM tienda.producto WHERE codigo_fabricante = (SELECT codigo FROM tienda.fabricante WHERE nombre = 'Lenovo'));
+SELECT nombre FROM tienda.producto WHERE codigo_fabricante = (SELECT codigo FROM tienda.fabricante WHERE nombre = 'Hewlett-Packard') AND precio = (SELECT MIN(precio) FROM tienda.producto WHERE codigo_fabricante = (SELECT codigo FROM tienda.fabricante WHERE nombre = 'Hewlett-Packard'));
+SELECT * FROM tienda.producto WHERE precio >= (SELECT MAX(precio) FROM tienda.producto WHERE codigo_fabricante = (SELECT codigo FROM tienda.fabricante WHERE nombre ='Lenovo'));
+SELECT producto.nombre AS nombre_p, producto.precio AS precio_p, fabricante.nombre AS nombre_fab FROM tienda.producto INNER JOIN tienda.fabricante ON producto.codigo_fabricante = fabricante.codigo WHERE fabricante.nombre = 'Asus' AND producto.precio > ((SELECT AVG(precio) FROM tienda.producto WHERE codigo_fabricante = (SELECT codigo FROM tienda.fabricante WHERE nombre = 'Asus')));
+
