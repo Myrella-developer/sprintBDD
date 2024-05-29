@@ -56,6 +56,15 @@ SELECT * FROM tienda.fabricante limit 3,2;
 SELECT nombre, precio FROM tienda.producto ORDER BY precio ASC LIMIT 1;
 SELECT nombre, precio FROM tienda.producto ORDER BY precio DESC LIMIT 1;
 SELECT nombre FROM tienda.producto WHERE codigo_fabricante = 2;
-SELECT producto.nombre AS nombre_p, producto.precio AS precio_p, fabricante.nombre AS nombre_fab FROM tienda.producto JOIN fabricante ON producto.codigo_fabricante = fabricante.codigo ORDER BY fabricante.nombre;
-SELECT producto.codigo AS codigo_p, producto.nombre AS nombre_p, producto.codigo_fabricante AS codigo_fab, fabricante.nombre AS nombre_fab FROM tienda.producto JOIN fabricante ON producto.codigo_fabricante = fabricante.codigo;
-    
+SELECT producto.nombre AS nombre_p, producto.precio AS precio_p, fabricante.nombre AS nombre_fab FROM tienda.producto INNER JOIN fabricante ON producto.codigo_fabricante = fabricante.codigo ORDER BY fabricante.nombre;
+SELECT producto.codigo AS codigo_p, producto.nombre AS nombre_p, producto.codigo_fabricante AS codigo_fab, fabricante.nombre AS nombre_fab FROM tienda.producto INNER JOIN fabricante ON producto.codigo_fabricante = fabricante.codigo;
+SELECT producto.nombre AS nombre_p, producto.precio AS precio_p, producto.codigo_fabricante AS codigo_fab, fabricante.nombre AS nombre_fab FROM tienda.producto INNER JOIN fabricante ON producto.codigo_fabricante = fabricante.codigo ORDER BY precio ASC LIMIT 1;
+SELECT producto.nombre AS nombre_p, producto.precio AS precio_p, producto.codigo_fabricante AS codigo_fab, fabricante.nombre AS nombre_fab FROM tienda.producto INNER JOIN fabricante ON producto.codigo_fabricante = fabricante.codigo ORDER BY precio DESC LIMIT 1;
+SELECT producto.nombre AS nombre_p, fabricante.nombre AS nombre_fab FROM tienda.producto INNER JOIN fabricante ON producto.codigo_fabricante = fabricante.codigo WHERE fabricante.nombre = 'Lenovo'; 
+SELECT producto.nombre AS nombre_p, producto.precio AS precio_p, fabricante.nombre AS nombre_fab FROM tienda.producto INNER JOIN fabricante ON producto.codigo_fabricante = fabricante.codigo WHERE fabricante.nombre = 'Crucial' AND producto.precio > 200;
+SELECT producto.nombre AS nombre_p, producto.precio AS precio_p, fabricante.nombre AS nombre_fab FROM tienda.producto INNER JOIN fabricante ON producto.codigo_fabricante = fabricante.codigo WHERE fabricante.nombre = 'Asus' OR fabricante.nombre = 'Hewlett-Packard' OR fabricante.nombre = 'Seagate';
+SELECT producto.nombre AS nombre_p, producto.precio AS precio_p, fabricante.nombre AS nombre_fab FROM tienda.producto INNER JOIN fabricante ON producto.codigo_fabricante = fabricante.codigo WHERE fabricante.nombre LIKE '%e';
+SELECT producto.nombre AS nombre_p, producto.precio AS precio_p, fabricante.nombre AS nombre_fab FROM tienda.producto INNER JOIN fabricante ON producto.codigo_fabricante = fabricante.codigo WHERE fabricante.nombre LIKE '%w%';
+SELECT producto.nombre AS nombre_p, producto.precio AS precio_p, fabricante.nombre AS nombre_fab FROM tienda.producto INNER JOIN fabricante ON producto.codigo_fabricante = fabricante.codigo WHERE producto.precio >= 180 ORDER BY producto.precio DESC, producto.nombre ASC;   
+SELECT fabricante.codigo AS codigo_fab, fabricante.nombre AS nombre_fab FROM tienda.fabricante INNER JOIN producto ON fabricante.codigo = producto.codigo_fabricante;
+        
