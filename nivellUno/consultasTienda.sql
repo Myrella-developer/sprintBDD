@@ -39,6 +39,7 @@ INSERT INTO producto VALUES(11, 'Impresora HP Laserjet Pro M26nw', 180, 3);
 
 SELECT nombre FROM producto;
 SELECT nombre, precio FROM producto ORDER BY precio;
+SELECT * FROM tienda.producto;
 SELECT nombre, precio, precio *1.1 FROM producto;
 SELECT nombre AS nombre_de_producto, precio AS euros, precio *1.1 AS dolares FROM producto;
 SELECT UPPER (nombre), precio FROM producto;
