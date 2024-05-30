@@ -257,3 +257,13 @@ INSERT INTO alumno_se_matricula_asignatura VALUES (19, 7, 5);
 INSERT INTO alumno_se_matricula_asignatura VALUES (19, 8, 5);
 INSERT INTO alumno_se_matricula_asignatura VALUES (19, 9, 5);
 INSERT INTO alumno_se_matricula_asignatura VALUES (19, 10, 5);
+
+SELECT apellido1, apellido2, nombre FROM universidad.persona WHERE persona.tipo = 'Alumno' ORDER BY apellido1, apellido2, nombre ASC;
+SELECT nombre, apellido1, apellido2 FROM universidad.persona WHERE persona.tipo = 'Alumno' AND persona.telefono IS NULL;
+SELECT nombre, apellido1, apellido2 FROM universidad.persona WHERE persona.tipo = 'Alumno' AND YEAR (fecha_nacimiento) = 1999;
+SELECT nombre, apellido1, nif FROM universidad.persona WHERE persona.tipo = 'Profesor' AND persona.telefono IS NULL AND persona.nif LIKE '%k';
+SELECT * FROM `asignatura` WHERE asignatura.cuatrimestre = 1 AND asignatura.curso = 3 AND asignatura.id_grado = 7;
+SELECT persona.apellido1, persona.apellido2, persona.nombre, departamento.nombre AS departamento FROM universidad.persona INNER JOIN departamento ON persona.id = departamento.id ORDER BY apellido1, apellido2, persona.nombre;
+SELECT asignatura.nombre AS asignatura, curso_escolar.anyo_inicio AS año_inicio, curso_escolar.anyo_fin AS año_fin FROM universidad.persona INNER JOIN alumno_se_matricula_asignatura ON persona.id = alumno_se_matricula_asignatura.id_alumno INNER JOIN asignatura ON alumno_se_matricula_asignatura.id_asignatura = asignatura.id INNER JOIN curso_escolar ON alumno_se_matricula_asignatura.id_curso_escolar = curso_escolar.id WHERE persona.nif = '26902806M';
+SELECT DISTINCT departamento.nombre AS nombre_departamento FROM departamento INNER JOIN profesor ON departamento.id = profesor.id_departamento INNER JOIN asignatura ON profesor.id_profesor = asignatura.id_profesor INNER JOIN grado ON asignatura.id_grado = grado.id WHERE grado.nombre = 'Grado en Ingeniería Informática (Plan 2015)';
+SELECT DISTINCT persona.nombre AS nombre_persona FROM persona INNER JOIN alumno_se_matricula_asignatura ON persona.id = alumno_se_matricula_asignatura.id_alumno INNER JOIN asignatura ON alumno_se_matricula_asignatura.id_asignatura = asignatura.id INNER JOIN curso_escolar ON alumno_se_matricula_asignatura.id_curso_escolar = curso_escolar.id WHERE curso_escolar.anyo_inicio= 2018 AND curso_escolar.anyo_fin = 2019;
