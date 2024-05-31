@@ -1,7 +1,7 @@
 DROP DATABASE IF EXISTS universidad;
 CREATE DATABASE universidad CHARACTER SET utf8mb4;
 USE universidad;
- 
+
 CREATE TABLE departamento (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL
@@ -267,3 +267,5 @@ SELECT persona.apellido1, persona.apellido2, persona.nombre, departamento.nombre
 SELECT asignatura.nombre AS asignatura, curso_escolar.anyo_inicio AS año_inicio, curso_escolar.anyo_fin AS año_fin FROM universidad.persona INNER JOIN alumno_se_matricula_asignatura ON persona.id = alumno_se_matricula_asignatura.id_alumno INNER JOIN asignatura ON alumno_se_matricula_asignatura.id_asignatura = asignatura.id INNER JOIN curso_escolar ON alumno_se_matricula_asignatura.id_curso_escolar = curso_escolar.id WHERE persona.nif = '26902806M';
 SELECT DISTINCT departamento.nombre AS nombre_departamento FROM departamento INNER JOIN profesor ON departamento.id = profesor.id_departamento INNER JOIN asignatura ON profesor.id_profesor = asignatura.id_profesor INNER JOIN grado ON asignatura.id_grado = grado.id WHERE grado.nombre = 'Grado en Ingeniería Informática (Plan 2015)';
 SELECT DISTINCT persona.nombre AS nombre_persona FROM persona INNER JOIN alumno_se_matricula_asignatura ON persona.id = alumno_se_matricula_asignatura.id_alumno INNER JOIN asignatura ON alumno_se_matricula_asignatura.id_asignatura = asignatura.id INNER JOIN curso_escolar ON alumno_se_matricula_asignatura.id_curso_escolar = curso_escolar.id WHERE curso_escolar.anyo_inicio= 2018 AND curso_escolar.anyo_fin = 2019;
+SELECT departamento.nombre, persona.apellido1, persona.apellido2, persona.nombre AS departamento FROM universidad.persona LEFT JOIN departamento ON persona.id = departamento.id WHERE persona.tipo = 'profesor' ORDER BY apellido1, apellido2, persona.nombre;
+SELECT departamento.nombre, persona.apellido1, persona.apellido2 FROM universidad.persona LEFT JOIN departamento ON persona.id = departamento.id WHERE persona.tipo = 'profesor' AND departamento.nombre IS NULL ORDER BY apellido1, apellido2, persona.nombre;
