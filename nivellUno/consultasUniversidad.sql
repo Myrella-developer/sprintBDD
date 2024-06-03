@@ -275,6 +275,6 @@ SELECT asignatura.nombre FROM profesor RIGHT JOIN departamento ON profesor.id_pr
 SELECT * FROM curso_escolar RIGHT JOIN departamento ON curso_escolar.id = departamento.id LEFT JOIN asignatura ON asignatura.id = departamento.id WHERE curso_escolar.anyo_inicio IS NULL;
 SELECT COUNT(persona.id) as alumnos FROM persona WHERE persona.tipo = 'alumno';
 SELECT COUNT(persona.id) as alumnos_de_1999 FROM persona WHERE persona.tipo = 'alumno' AND YEAR(fecha_nacimiento) = '1999';
-SELECT departamento.nombre AS departamento, COUNT(persona.id) AS num_profesores FROM universidad.persona RIGHT JOIN departamento ON persona.id = departamento.id WHERE persona.tipo = 'profesor' ORDER BY persona.id;
-SELECT * FROM universidad.persona WHERE persona.fecha_nacimiento =(SELECT MAX(fecha_nacimiento) FROM persona WHERE persona.tipo = 'alumno');
-SELECT DISTINCT departamento.nombre AS nombre_departamento, profesor.id_profesor AS profesor_id FROM departamento INNER JOIN profesor ON departamento.id = profesor.id_departamento INNER JOIN asignatura WHERE asignatura.id_profesor IS NULL;
+SELECT departamento.nombre AS departamento, COUNT(persona.id) AS num_profesores FROM departamento LEFT JOIN persona ON persona.id = departamento.id AND persona.tipo= 'profesor' GROUP BY departamento.nombre ORDER BY departamento.nombre;
+SELECT * FROM universidad.persona WHERE persona.tipo = 'alumno' AND persona.fecha_nacimiento =(SELECT MAX(fecha_nacimiento) FROM persona WHERE persona.tipo = 'alumno');
+SELECT DISTINCT departamento.nombre AS nombre_departamento, profesor.id_profesor AS profesor_id FROM departamento INNER JOIN profesor ON departamento.id = profesor.id_departamento LEFT JOIN asignatura ON profesor.id_profesor = asignatura.id_profeso WHERE asignatura.id_profesor IS NULL;
