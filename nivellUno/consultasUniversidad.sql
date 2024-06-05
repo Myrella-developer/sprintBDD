@@ -257,7 +257,7 @@ INSERT INTO alumno_se_matricula_asignatura VALUES (19, 7, 5);
 INSERT INTO alumno_se_matricula_asignatura VALUES (19, 8, 5);
 INSERT INTO alumno_se_matricula_asignatura VALUES (19, 9, 5);
 INSERT INTO alumno_se_matricula_asignatura VALUES (19, 10, 5);
-
+/*PRIMER BLOQUE*/
 SELECT apellido1, apellido2, nombre FROM universidad.persona WHERE persona.tipo = 'Alumno' ORDER BY apellido1, apellido2, nombre ASC;
 SELECT nombre, apellido1, apellido2 FROM universidad.persona WHERE persona.tipo = 'Alumno' AND persona.telefono IS NULL;
 SELECT nombre, apellido1, apellido2 FROM universidad.persona WHERE persona.tipo = 'Alumno' AND YEAR (fecha_nacimiento) = 1999;
@@ -267,14 +267,16 @@ SELECT persona.apellido1, persona.apellido2, persona.nombre, departamento.nombre
 SELECT asignatura.nombre AS asignatura, curso_escolar.anyo_inicio AS año_inicio, curso_escolar.anyo_fin AS año_fin FROM universidad.persona INNER JOIN alumno_se_matricula_asignatura ON persona.id = alumno_se_matricula_asignatura.id_alumno INNER JOIN asignatura ON alumno_se_matricula_asignatura.id_asignatura = asignatura.id INNER JOIN curso_escolar ON alumno_se_matricula_asignatura.id_curso_escolar = curso_escolar.id WHERE persona.nif = '26902806M';
 SELECT DISTINCT departamento.nombre AS nombre_departamento FROM departamento INNER JOIN profesor ON departamento.id = profesor.id_departamento INNER JOIN asignatura ON profesor.id_profesor = asignatura.id_profesor INNER JOIN grado ON asignatura.id_grado = grado.id WHERE grado.nombre = 'Grado en Ingeniería Informática (Plan 2015)';
 SELECT DISTINCT persona.nombre AS nombre_persona FROM persona INNER JOIN alumno_se_matricula_asignatura ON persona.id = alumno_se_matricula_asignatura.id_alumno INNER JOIN asignatura ON alumno_se_matricula_asignatura.id_asignatura = asignatura.id INNER JOIN curso_escolar ON alumno_se_matricula_asignatura.id_curso_escolar = curso_escolar.id WHERE curso_escolar.anyo_inicio= 2018 AND curso_escolar.anyo_fin = 2019;
-SELECT departamento.nombre, persona.apellido1, persona.apellido2, persona.nombre FROM universidad.persona LEFT JOIN departamento ON persona.id = departamento.id WHERE persona.tipo = 'profesor' ORDER BY apellido1, apellido2, persona.nombre;
-SELECT departamento.nombre, persona.apellido1, persona.apellido2 FROM universidad.persona LEFT JOIN departamento ON persona.id = departamento.id WHERE persona.tipo = 'profesor' AND departamento.nombre IS NULL ORDER BY apellido1, apellido2, persona.nombre;
-SELECT departamento.nombre FROM departamento LEFT JOIN profesor ON departamento.id = profesor.id_departamento WHERE profesor.id_departamento IS NULL;
-SELECT * FROM profesor LEFT JOIN departamento ON profesor.id_profesor = departamento.id LEFT JOIN asignatura ON asignatura.id = departamento.id WHERE asignatura.id IS NULL;
-SELECT asignatura.nombre FROM profesor RIGHT JOIN departamento ON profesor.id_profesor = departamento.id RIGHT JOIN asignatura ON asignatura.id = departamento.id WHERE asignatura.id_profesor IS NULL;
-SELECT * FROM curso_escolar RIGHT JOIN departamento ON curso_escolar.id = departamento.id LEFT JOIN asignatura ON asignatura.id = departamento.id WHERE curso_escolar.anyo_inicio IS NULL;
-SELECT COUNT(persona.id) as alumnos FROM persona WHERE persona.tipo = 'alumno';
-SELECT COUNT(persona.id) as alumnos_de_1999 FROM persona WHERE persona.tipo = 'alumno' AND YEAR(fecha_nacimiento) = '1999';
-SELECT departamento.nombre AS departamento, COUNT(persona.id) AS num_profesores FROM departamento LEFT JOIN persona ON persona.id = departamento.id AND persona.tipo= 'profesor' GROUP BY departamento.nombre ORDER BY departamento.nombre;
-SELECT * FROM universidad.persona WHERE persona.tipo = 'alumno' AND persona.fecha_nacimiento =(SELECT MAX(fecha_nacimiento) FROM persona WHERE persona.tipo = 'alumno');
-SELECT DISTINCT departamento.nombre AS nombre_departamento, profesor.id_profesor AS profesor_id FROM departamento INNER JOIN profesor ON departamento.id = profesor.id_departamento LEFT JOIN asignatura ON profesor.id_profesor = asignatura.id_profeso WHERE asignatura.id_profesor IS NULL;
+/*CONSULTAS LEFT RIGHT*/
+/*1*/ SELECT departamento.nombre, persona.apellido1, persona.apellido2, persona.nombre FROM universidad.persona LEFT JOIN departamento ON persona.id = departamento.id WHERE persona.tipo = 'profesor' ORDER BY apellido1, apellido2, persona.nombre;
+/*2*/ SELECT departamento.nombre, persona.id, persona.nombre FROM universidad.persona LEFT JOIN departamento ON persona.id = departamento.id WHERE persona.tipo = 'profesor' AND departamento.id IS NULL;
+/*3*/ SELECT departamento.nombre FROM departamento LEFT JOIN profesor ON departamento.id = profesor.id_departamento WHERE profesor.id_departamento IS NULL;
+/*4*/ SELECT persona.id, persona.nombre FROM persona LEFT JOIN profesor ON persona.id = profesor.id_profesor LEFT JOIN asignatura ON profesor.id_profesor = asignatura.id_profesor WHERE persona.tipo = 'profesor' AND asignatura.id IS NULL;
+/*5*/ SELECT asignatura.nombre FROM profesor RIGHT JOIN departamento ON profesor.id_profesor = departamento.id RIGHT JOIN asignatura ON asignatura.id = departamento.id WHERE asignatura.id_profesor IS NULL;
+/*6*/ SELECT departamento.id, departamento.nombre FROM departamento LEFT JOIN profesor ON departamento.id = profesor.id_departamento LEFT JOIN asignatura ON profesor.id_profesor = asignatura.id_profesor LEFT JOIN curso_escolar ON asignatura.id = curso_escolar.id WHERE curso_escolar.id IS NULL;
+/*CONSULTAS RESUM*/
+/*1*/  SELECT COUNT(persona.id) as alumnos FROM persona WHERE persona.tipo = 'alumno';
+/*2*/  SELECT COUNT(persona.id) as alumnos_de_1999 FROM persona WHERE persona.tipo = 'alumno' AND YEAR(fecha_nacimiento) = '1999';
+/*3*/ SELECT departamento.nombre AS departamento, COUNT(persona.id) AS num_profesores FROM departamento LEFT JOIN profesor ON departamento.id = profesor.id_departamento LEFT JOIN persona ON profesor.id_profesor = persona.id WHERE persona.tipo = 'profesor' GROUP BY departamento.nombre ORDER BY num_profesores DESC;
+/*10*/ SELECT * FROM universidad.persona WHERE persona.tipo = 'alumno' AND persona.fecha_nacimiento =(SELECT MAX(fecha_nacimiento) FROM persona WHERE persona.tipo = 'alumno');
+/*11*/ SELECT DISTINCT departamento.nombre AS nombre_departamento, profesor.id_profesor AS profesor_id FROM departamento INNER JOIN profesor ON departamento.id = profesor.id_departamento LEFT JOIN asignatura ON profesor.id_profesor = asignatura.id_profesor WHERE asignatura.id_profesor IS NULL;
