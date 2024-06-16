@@ -37,5 +37,16 @@ db.restaurants.find({ $and: [{"grades.score": { $gt: 70}}, {"address.coord": { $
 db.restaurants.find({"grades.score": { $gt: 70 },"address.coord": { $lt: -65.754168 },"cuisine": { $ne: "American" }}, { name: 1, _id: 0 })
 
 /* 13- Escribe una consulta para encontrar los restaurantes que no preparan comer '*American ', tienen alguna nota 'A' y no pertenecen a Brooklyn. Se tiene que mostrar el documento según la *cuisine en orden descendente */
-db.restaurants.find({$and: [{ "cuisine": { $ne: "Americana" } },{ "grades.grade": "A" },{ "borough": { $ne: "Brooklyn" } }]}).sort({ "cuisine": -1 })
-  
+db.restaurants.find({$and: [{ "cuisine": { $ne: "American" } },{ "grades.grade": "A" },{ "borough": { $ne: "Brooklyn" } }]}).sort({ "cuisine": -1 })
+ 
+/*14- Escribe una consulta para encontrar el restaurante_*id, *name, *borough y *cuisine para aquellos restaurantes que contienen '*Wil' en las tres primeras letras en su nombre */
+db.restaurants.find({ name: { $regex: /^Wil/ } },{ restaurant_id: 1, name: 1, borough: 1, cuisine: 1, _id: 0 })
+
+/* 15- Escribe una consulta para encontrar el restaurante_*id, *name, *borough y *cuisine para aquellos restaurantes que contienen 'ces' en las últimas tres letras en su nombre.*/
+db.restaurants.find({ name: { $regex: /ces$/ } },{ restaurant_id: 1, name: 1, borough: 1, cuisine: 1, _id: 0 })
+
+/* 16- Escribe una consulta para encontrar el restaurante_*id, *name, *borough y *cuisine para aquellos restaurantes que contienen 'Riego' en cualquier lugar de su nombre */
+db.restaurants.find({ name: { $regex: /Riego/i } },{ restaurant_id: 1, name: 1, borough: 1, cuisine: 1, _id: 0 })
+
+/* 17- Escribe una consulta para encontrar los restaurantes que pertenecen al *Bronx y preparan platos Americanos o chinos */
+db.restaurants.find({ borough: "Bronx", cuisine: { $in: ["American", "Chinese"] } }, { name: 1, borough: 1, cuisine: 1, _id: 0})
