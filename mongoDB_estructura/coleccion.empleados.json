@@ -1,0 +1,25 @@
+[{
+  "_id": {
+    "$oid": "666f188083ae517251108793"
+  },
+  "type": "table",
+  "name": "empleado",
+  "database": "optica",
+  "data": [
+    {
+      "nombre": "Oriol",
+      "apellido": "Sanchez",
+      "id": "91"
+    },
+    {
+      "nombre": "Ayuso",
+      "apellido": "Silva",
+      "id": "96"
+    },
+    {
+      "nombre": "Pedro",
+      "apellido": "Almeida",
+      "id": "97"
+    }
+  ]
+}]

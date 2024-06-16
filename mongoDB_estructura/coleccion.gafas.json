@@ -1,0 +1,76 @@
+[{
+  "_id": {
+    "$oid": "666f172d83ae517251108785"
+  },
+  "type": "table",
+  "name": "garfas",
+  "database": "optica",
+  "data": [
+    {
+      "id": "93",
+      "marca": "gucci",
+      "grado_r": "0.5",
+      "grado_l": "0.5",
+      "tipo_montura": "pasta",
+      "color": "negro",
+      "color_r": "transparente",
+      "color_l": "transparente",
+      "id_provedor": "123"
+    },
+    {
+      "id": "94",
+      "marca": "prada",
+      "grado_r": "3.25",
+      "grado_l": "3.25",
+      "tipo_montura": "metalica",
+      "color": "dourado",
+      "color_r": "transparente",
+      "color_l": "transparente",
+      "id_provedor": "125"
+    },
+    {
+      "id": "95",
+      "marca": "ahoraveo",
+      "grado_r": "0.5",
+      "grado_l": "0.5",
+      "tipo_montura": "pasta",
+      "color": "negro",
+      "color_r": "transparente",
+      "color_l": "transparente",
+      "id_provedor": "124"
+    },
+    {
+      "id": "96",
+      "marca": "vision",
+      "grado_r": "3.25",
+      "grado_l": "3.25",
+      "tipo_montura": "metalica",
+      "color": "prata",
+      "color_r": "transparente",
+      "color_l": "transparente",
+      "id_provedor": "123"
+    },
+    {
+      "id": "97",
+      "marca": "ahoraveo",
+      "grado_r": "4.5",
+      "grado_l": "4.5",
+      "tipo_montura": "pasta",
+      "color": "rosa",
+      "color_r": "transparente",
+      "color_l": "transparente",
+      "id_provedor": "124"
+    },
+    {
+      "id": "98",
+      "marca": "vision",
+      "grado_r": "1.25",
+      "grado_l": "1.25",
+      "tipo_montura": "metalica",
+      "color": "dourado",
+      "color_r": "transparente",
+      "color_l": "transparente",
+      "id_provedor": "123"
+    }
+  ]
+}]

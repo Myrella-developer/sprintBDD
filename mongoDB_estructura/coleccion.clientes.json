@@ -1,0 +1,54 @@
+[{
+  "_id": {
+    "$oid": "666f182f83ae51725110878e"
+  },
+  "type": "table",
+  "name": "cliente",
+  "database": "optica",
+  "data": [
+    {
+      "id": "1",
+      "nombre": "Maria",
+      "apellido1": "Gomez",
+      "apellido2": "Silva",
+      "direccion": "calle de muntaner, 18",
+      "telefono": "612345678",
+      "correo": "maria.gomez@correo.es",
+      "fecha_alta": "2023-06-05",
+      "id_cliente_amigo": null
+    },
+    {
+      "id": "2",
+      "nombre": "Jose",
+      "apellido1": "Suarez",
+      "apellido2": "",
+      "direccion": "calle de Balmes,21",
+      "telefono": "987654321",
+      "correo": "jose.suarez@correo.es",
+      "fecha_alta": "2023-12-01",
+      "id_cliente_amigo": "2"
+    },
+    {
+      "id": "3",
+      "nombre": "Joan",
+      "apellido1": "Souza",
+      "apellido2": "",
+      "direccion": "calle de Bonanova",
+      "telefono": "987678901",
+      "correo": "joan.souza@correo.es",
+      "fecha_alta": "2024-06-04",
+      "id_cliente_amigo": null
+    },
+    {
+      "id": "4",
+      "nombre": "Perla",
+      "apellido1": "Houffman",
+      "apellido2": "",
+      "direccion": "calle de glories,213",
+      "telefono": "567890123",
+      "correo": "perla.hourffman@correo.es",
+      "fecha_alta": "2024-05-17",
+      "id_cliente_amigo": null
+    }
+  ]
+}]

@@ -1,0 +1,52 @@
+[{
+  "_id": {
+    "$oid": "666f190e83ae5172511087a0"
+  },
+  "type": "table",
+  "name": "ventas",
+  "database": "optica",
+  "data": [
+    {
+      "id": "1",
+      "id_empleado": "91",
+      "id_garfas": "95",
+      "id_periodo": "101",
+      "id_cliente": "1"
+    },
+    {
+      "id": "2",
+      "id_empleado": "91",
+      "id_garfas": "97",
+      "id_periodo": "101",
+      "id_cliente": "1"
+    },
+    {
+      "id": "3",
+      "id_empleado": "96",
+      "id_garfas": "96",
+      "id_periodo": "101",
+      "id_cliente": "2"
+    },
+    {
+      "id": "4",
+      "id_empleado": "97",
+      "id_garfas": "98",
+      "id_periodo": "101",
+      "id_cliente": "4"
+    },
+    {
+      "id": "5",
+      "id_empleado": "96",
+      "id_garfas": "94",
+      "id_periodo": "101",
+      "id_cliente": "3"
+    },
+    {
+      "id": "6",
+      "id_empleado": "97",
+      "id_garfas": "93",
+      "id_periodo": "101",
+      "id_cliente": "1"
+    }
+  ]
+}]

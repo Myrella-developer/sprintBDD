@@ -1,0 +1,62 @@
+[{
+  "_id": {
+    "$oid": "666f13c783ae51725110877b"
+  },
+  "type": "table",
+  "name": "provedor",
+  "database": "optica",
+  "data": [
+    {
+      "id": "123",
+      "telefono": "987678901",
+      "fax": "987678901",
+      "nif": "7987893F",
+      "calle": "calle de embassador",
+      "numero": "23",
+      "piso": "1",
+      "puerta": "2",
+      "ciudad": "barcelona",
+      "codigo_postal": "8000",
+      "pais": "españa"
+    },
+    {
+      "id": "124",
+      "telefono": "953678901",
+      "fax": "953678901",
+      "nif": "1234321G",
+      "calle": "calle marina",
+      "numero": "32",
+      "piso": "2",
+      "puerta": "1",
+      "ciudad": "madrid",
+      "codigo_postal": "3200",
+      "pais": "españa"
+    },
+    {
+      "id": "125",
+      "telefono": "678678901",
+      "fax": "678678901",
+      "nif": "4321321D",
+      "calle": "calle batatas",
+      "numero": "223",
+      "piso": "5",
+      "puerta": "1",
+      "ciudad": "barcelona",
+      "codigo_postal": "8210",
+      "pais": "españa"
+    },
+    {
+      "id": "126",
+      "telefono": "987678901",
+      "fax": "987678901",
+      "nif": "7987893F",
+      "calle": "calle de embassador",
+      "numero": "23",
+      "piso": "1",
+      "puerta": "2",
+      "ciudad": "barcelona",
+      "codigo_postal": "8000",
+      "pais": "españa"
+    }
+  ]
+}]
