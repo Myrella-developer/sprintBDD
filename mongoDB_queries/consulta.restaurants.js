@@ -28,13 +28,13 @@ db.restaurants.find({ "grades.score": { $gt: 90 } },{ name: 1, _id: 0 })
 db.restaurants.find({ grades: { $elemMatch: { score: { $gt: 80, $lt: 100 } } }},{ name: 1, "grades.score": 1, _id: 0 })  
 
 /* 10- Escribe una consulta para encontrar los restaurantes que están situados en una longitud inferior a -95.754168 */ 
-db.restaurants.find({ "address.coord": { $lt: -95.754168  } },  { name: 1, _id: 0 })
+db.restaurants.find({ "address.coord.0": { $lt: -95.754168  } },  { name: 1, _id: 0 })
 
 /* 11- Escribe una consulta de *MongoDB para encontrar los restaurantes que no cocinan  '*American ' y tienen algún *score superior en 70 y latitud inferior a -65.754168 */
-db.restaurants.find({ $and: [{"grades.score": { $gt: 70}}, {"address.coord": { $lt:-65.754168 }}, {"cuisine": { $ne: "American" } }]}, {name: 1, _id: 0})
+db.restaurants.find({ $and: [{"grades.score": { $gt: 70}}, {"address.coord.0": { $lt:-65.754168 }}, {"cuisine": { $ne: "American" } }]}, {name: 1, _id: 0})
 
 /* 12- Escribe una consulta para encontrar los restaurantes que no preparan comer '*American' y tienen algún *score superior en 70 y que, además, se localizan en longitudes inferiores a -65.754168. Nota: Fez esta consulta sin utilizar operador $*and */
-db.restaurants.find({"grades.score": { $gt: 70 },"address.coord": { $lt: -65.754168 },"cuisine": { $ne: "American" }}, { name: 1, _id: 0 })
+db.restaurants.find({"grades.score": { $gt: 70 },"address.coord.0": { $lt: -65.754168 },"cuisine": { $ne: "American" }}, { name: 1, _id: 0 })
 
 /* 13- Escribe una consulta para encontrar los restaurantes que no preparan comer '*American ', tienen alguna nota 'A' y no pertenecen a Brooklyn. Se tiene que mostrar el documento según la *cuisine en orden descendente */
 db.restaurants.find({$and: [{ "cuisine": { $ne: "American" } },{ "grades.grade": "A" },{ "borough": { $ne: "Brooklyn" } }]}).sort({ "cuisine": -1 })
