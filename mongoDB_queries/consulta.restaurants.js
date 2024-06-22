@@ -31,7 +31,7 @@ db.restaurants.find({ grades: { $elemMatch: { score: { $gt: 80, $lt: 100 } } }},
 db.restaurants.find({ "address.coord.0": { $lt: -95.754168  } },  { name: 1, _id: 0 })
 
 /* 11- Escribe una consulta de *MongoDB para encontrar los restaurantes que no cocinan  '*American ' y tienen algún *score superior en 70 y latitud inferior a -65.754168 */
-db.restaurants.find({ $and: [{"grades.score": { $gt: 70}}, {"address.coord.0": { $lt:-65.754168 }}, {"cuisine": { $ne: "American" } }]}, {name: 1, _id: 0})
+db.restaurants.find({ $and: [{"grades.score": { $gt: 70}}, {"address.coord.1": { $lt:-65.754168 }}, {"cuisine": { $ne: "American" } }]}, {name: 1, _id: 0})
 
 /* 12- Escribe una consulta para encontrar los restaurantes que no preparan comer '*American' y tienen algún *score superior en 70 y que, además, se localizan en longitudes inferiores a -65.754168. Nota: Fez esta consulta sin utilizar operador $*and */
 db.restaurants.find({"grades.score": { $gt: 70 },"address.coord.0": { $lt: -65.754168 },"cuisine": { $ne: "American" }}, { name: 1, _id: 0 })
@@ -50,3 +50,6 @@ db.restaurants.find({ name: { $regex: /Reg/i } },{ restaurant_id: 1, name: 1, bo
 
 /* 17- Escribe una consulta para encontrar los restaurantes que pertenecen al *Bronx y preparan platos Americanos o chinos */
 db.restaurants.find({ borough: "Bronx", cuisine: { $in: ["American", "Chinese"] } }, { name: 1, borough: 1, cuisine: 1, _id: 0})
+
+/* 18 - Escribe una consulta para encontrar el restaurante_id, name, borough y cuisine por aquellos restaurantes que pertenecen a Staten Island, Queens, Bronx o Brooklyn.*/
+db.restaurants.find({ "borough": { $in: ["Staten Island", "Queens", "Bronx", "Brooklyn"] }}, { "restaurant_id": 1, "name": 1, "borough": 1, "cuisine": 1, "_id": 0})
